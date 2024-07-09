@@ -1,0 +1,32 @@
+query Input {
+  cartTransform {
+    bundleParent: metafield(key: "bundle_parent", namespace: "custom") {
+      value
+    }
+  }
+  cart {
+    lines {
+      id
+      quantity
+      cost {
+        amountPerQuantity {
+          amount
+        }
+      }
+      bundleWith: attribute(key: "_bundle_with") {
+        value
+      }
+      merchandise {
+        __typename
+        ... on ProductVariant {
+          __typename
+          id
+          title
+          product {
+            id
+          }
+        }
+      }
+    }
+  }
+}
